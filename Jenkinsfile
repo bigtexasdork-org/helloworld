@@ -1,25 +1,35 @@
 #!groovy 
 
-node {
+pipeline {
+  agent any
   options {
     ansiColor('xterm')
   }
-  
+}
+stages {
   stage ('Checkout') {
-    checkout scm
+    steps {
+      checkout scm
+    }
   }
 
   stage ('Setup') {
-    sh 'npm install'
+    steps {
+      sh 'npm install'
+    }
   }
 
   stage ('Mocha test') {
-    sh './node_modules/mocha/bin/mocha --exit'
+    steps {
+      sh './node_modules/mocha/bin/mocha --exit'
+    }
   }
 
   stage ('Cleanup') {
-    echo 'prune and cleanup'
-    sh 'npm prune'
-    sh 'rm node_modules -rf'
+    steps {
+      echo 'prune and cleanup'
+      sh 'npm prune'
+      sh 'rm node_modules -rf'
+    }
   }
 }
