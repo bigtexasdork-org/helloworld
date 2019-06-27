@@ -5,14 +5,8 @@ pipeline {
   options {
     ansiColor('xterm')
   }
-  
-  stages {
-    stage ('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
 
+  stages {
     stage ('Setup') {
       steps {
         sh 'npm install'
