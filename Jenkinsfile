@@ -1,6 +1,10 @@
 #!groovy 
 
 node {
+  options {
+    ansiColor('xterm')
+  }
+  
   stage ('Checkout') {
     checkout scm
   }
